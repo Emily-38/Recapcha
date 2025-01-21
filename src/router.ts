@@ -1,10 +1,14 @@
-import { createMemoryHistory, createRouter } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
-import AppView from "./App.vue";
+import HomeView from "./pages/home.vue";
+import QuestionnaireView from "./Questionnaire.vue";
 
-const routes = [{ path: "/", component: AppView }];
+const routes = [
+  { path: "/", component: HomeView },
+  { path: "/questionnaire", component: QuestionnaireView },
+];
 
 export const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 });
