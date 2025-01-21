@@ -50,7 +50,7 @@ const props = defineProps<PropsQuestion>();
   background-color: #4da1a938;
   padding: 30px 60px;
   color: black;
-  border-radius: 13px;
+  border-radius: 12px;
 }
 
 .questionTitle {
@@ -65,10 +65,11 @@ const props = defineProps<PropsQuestion>();
 }
 
 .divQuestion span {
-  border: black solid 1px;
-  border-radius: 13px;
   background-color: white;
   padding: 5px 20px 5px 10px;
+
+  border-radius: 12px;
+  border: 1px solid black;
 }
 
 .pagination {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ComponentQuestion from "./components/Question.vue";
+import ComponentQuestion from "../components/Question.vue";
 
 const questions = [
   {
