@@ -6,6 +6,7 @@ import QuestionnaireView from "./pages/Questionnaire.vue";
 const routes = [
   { path: "/", component: HomeView },
   { path: "/questionnaire", component: QuestionnaireView },
+
 ];
 
 export const router = createRouter({
