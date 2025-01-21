@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
     import { reactive } from 'vue';
     import ComponentInput from '../components/Input.vue'
     import ComponentButton from "../components/Button.vue";
@@ -52,4 +53,5 @@
         gap: 38px;
     
     }
+
 </style>
