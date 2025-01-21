@@ -25,7 +25,7 @@
 
     const submit=() =>{
         console.log('Données du formulaire:', JSON.stringify(formData));
-        window.localStorage.setItem('personne',JSON.stringify(formData))
+        localStorage.setItem('personne',JSON.stringify(formData))
     }
 </script>
 
@@ -37,7 +37,9 @@
         <ComponentInput placeholder="Prenom" type="text"  @typing="updateField('firstname', $event)" />
         <ComponentInput placeholder="Mot de passe" type="password" @typing="updateField('mdp', $event)"/>
         <ComponentInput placeholder="Confirme mot de passe" type="password" @typing="updateField('confirmmdp', $event)"/>
+        <RouterLink to="/questionnaire" @click="submit">
         <ComponentButton title="Valider" type="submit" id="valider" />
+        </RouterLink>
     </form>
 </template>
 
