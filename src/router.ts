@@ -8,8 +8,7 @@ import HangmanGame from "./pages/hangmanGame.vue";
 const routes = [
   { path: "/", component: HomeView },
   { path: "/questionnaire", component: QuestionnaireView },
-  { path: "/bubble", component: BubbleView}
-
+  { path: "/bubble", component: BubbleView},
   { path:"/pendu", component: HangmanGame},
 ];
 
