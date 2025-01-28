@@ -5,14 +5,6 @@ import ComponentButton from "../components/Button.vue";
 import { submitForm } from "../controllers/HomeController.ts";
 import type { Formulaire } from "../Types/Formulaire.ts";
 
-// interface Formulaire {
-//   email: string;
-//   name: string;
-//   firstname: string;
-//   mdp: string;
-//   confirmmdp: string;
-// }
-
 const formData = reactive<Formulaire>({
   email: "",
   name: "",
@@ -37,8 +29,6 @@ const updateField = (
 };
 
 const submit = () => {
-  // console.log('Données du formulaire:', JSON.stringify(formData));
-  //   localStorage.setItem('personne',JSON.stringify(formData))
   submitForm(formData);
 };
 </script>
@@ -86,5 +76,7 @@ const submit = () => {
   display: flex;
   flex-direction: column;
   gap: 38px;
+  width: fit-content;
+  margin: 0 auto;
 }
 </style>
