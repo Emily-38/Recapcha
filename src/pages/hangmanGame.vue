@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeMount, reactive, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 import GuessableWord from '../components/hangmanGame/guessableWord.vue';
 import WrongLetters from '../components/hangmanGame/wrongLetters.vue';
@@ -7,16 +7,12 @@ import Stickman from '../components/hangmanGame/stickman.vue';
 import ComponentInput from '../components/Input.vue';
 import ComponentButton from '../components/Button.vue';
 
-interface AnswerForm {
-    answer: string;
-};
 
 const words = ['CHAT', 'TABLE', 'SOLEIL', 'POMME', 'ROBOT', 'LILAS'];
-const answerData = reactive<AnswerForm>({
-    answer: '',
-});
 
 let keyIndex = ref(0);
+
+const answerData = ref('')
 
 let guesses : string[] = [];
 let wrongGuesses : string[] = [];
@@ -27,16 +23,13 @@ let chosenWord : string = '';
 
 onBeforeMount(() => {
    chosenWord = words[Math.floor(Math.random() * words.length)]
-   console.log(chosenWord);
    guesses.push(chosenWord.split('')[0]); //having this and a push of [-1] would reveal the first and last letter BUT also repeat letters for ex word 'LILAS' would show as L_L__ on init
+   correctGuesses.push(chosenWord.split('')[0]);
 });
 
-const updateField = (field: keyof AnswerForm, value: string) => {
-    answerData[field] = value;
-};
 
 const sendAnswer = () => {
-    answerData.answer.toUpperCase().split('').forEach(letter => {
+    answerData.value.toUpperCase().split('').forEach(letter => {
         guesses.push(letter);
         if( chosenWord.split('').includes(letter) == false ) {
             wrongGuesses.push(letter);
@@ -57,10 +50,7 @@ const sendAnswer = () => {
     }
 
     keyIndex.value++;
-    
-    //trying to find how to reset the form cleanly after each sendAnswer :(
-    answerData.answer = '';
-
+    answerData.value = '';
 
     return false;
 };
@@ -86,7 +76,7 @@ const endGame = ( path : string ) => {
     </section>
 
     <form @submit.prevent="sendAnswer">
-        <ComponentInput placeholder="J, Banane..." type="text" @typing="updateField('answer', $event)" />
+        <ComponentInput placeholder="J, Banane..." type="text" :value="answerData" @input="answerData = $event.target.value" />
         <ComponentButton title="Valider" type="submit" id="valider" />
     </form>
 
