@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeMount, reactive, ref } from "vue";
+import { onBeforeMount, ref } from 'vue';
 
 import GuessableWord from "../components/hangmanGame/guessableWord.vue";
 import WrongLetters from "../components/hangmanGame/wrongLetters.vue";
@@ -8,45 +8,38 @@ import ComponentInput from "../components/Input.vue";
 import ComponentButton from "../components/Button.vue";
 import { submitReponse } from "../controllers/JeuController";
 
-interface AnswerForm {
-  answer: string;
-}
 
-const words = ["CHAT", "TABLE", "SOLEIL", "POMME", "ROBOT", "LILAS"];
-const answerData = reactive<AnswerForm>({
-  answer: "",
-});
+const words = ['CHAT', 'TABLE', 'SOLEIL', 'POMME', 'ROBOT', 'LILAS'];
 
 let keyIndex = ref(0);
 
-let guesses: string[] = [];
-let wrongGuesses: string[] = [];
-let correctGuesses: string[] = [];
+const answerData = ref('')
+
+let guesses : string[] = [];
+let wrongGuesses : string[] = [];
+let correctGuesses : string[] = []; 
 //refacto guessable word to take this variable instead of calculating it?
 
 let chosenWord: string = "";
 
 onBeforeMount(() => {
-  chosenWord = words[Math.floor(Math.random() * words.length)];
-  console.log(chosenWord);
-  guesses.push(chosenWord.split("")[0]); //having this and a push of [-1] would reveal the first and last letter BUT also repeat letters for ex word 'LILAS' would show as L_L__ on init
+   chosenWord = words[Math.floor(Math.random() * words.length)]
+   guesses.push(chosenWord.split('')[0]); //having this and a push of [-1] would reveal the first and last letter BUT also repeat letters for ex word 'LILAS' would show as L_L__ on init
+   correctGuesses.push(chosenWord.split('')[0]);
 });
 
-const updateField = (field: keyof AnswerForm, value: string) => {
-  answerData[field] = value;
-};
 
 const sendAnswer = () => {
-  answerData.answer
+    answerData.value
     .toUpperCase()
-    .split("")
-    .forEach((letter) => {
-      guesses.push(letter);
-      if (chosenWord.split("").includes(letter) == false) {
-        wrongGuesses.push(letter);
-      } else {
-        correctGuesses.push(letter);
-      }
+    .split('')
+    .forEach(letter => {
+        guesses.push(letter);
+        if( chosenWord.split('').includes(letter) == false ) {
+            wrongGuesses.push(letter);
+        } else { 
+            correctGuesses.push(letter);
+        }
     });
   //refactorable? it looks ugly :(
   guesses = removeDupes(guesses);
@@ -65,9 +58,7 @@ const sendAnswer = () => {
   }
 
   keyIndex.value++;
-
-  //trying to find how to reset the form cleanly after each sendAnswer :(
-  answerData.answer = "";
+  answerData.value = '';
 
   return false;
 };
@@ -94,14 +85,14 @@ const endGame = (path: string) => {
     <div>Vies restantes : {{ 4 - wrongGuesses.length }}</div>
   </section>
 
-  <form @submit.prevent="sendAnswer">
-    <ComponentInput
-      placeholder="J, Banane..."
-      type="text"
-      @typing="updateField('answer', $event)"
-    />
-    <ComponentButton title="Valider" type="submit" id="valider" />
-  </form>
+    <form @submit.prevent="sendAnswer">
+        <ComponentInput 
+        placeholder="J, Banane..." 
+        type="text" :value="answerData" 
+        @input="answerData = $event.target.value" />
+        <ComponentButton title="Valider" type="submit" id="valider" />
+    </form>
+
 </template>
 
 <style scoped>
