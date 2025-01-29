@@ -8,7 +8,11 @@
   <router-view></router-view>
 </template>
 
-<style scoped>
+<style >
+body {
+  background-color:#F6F4F0 ;
+}
+
 header {
   width: 90vw;
   display: flex;
