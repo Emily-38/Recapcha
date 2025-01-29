@@ -67,16 +67,14 @@ const questions = [
 ];
 
 const saveSubmitReponse = (reponse: boolean[]) => {
-  submitReponse(reponse);
-};
+  // annalyser réponse pour renvoyer un seul bool
 
-const submit = () => {
-  console.log("fini");
+  submitReponse(true);
 };
 </script>
 
 <template>
-  <form action="" @submit.prevent="submit">
+  <form action="" @submit.prevent="">
     <ComponentQuestion
       :questions="questions"
       @submitReponse="saveSubmitReponse"

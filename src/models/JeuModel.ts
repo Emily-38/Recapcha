@@ -1,6 +1,6 @@
 import { getLocalStorage, saveLocalStorage } from "../Service/localStorage";
 
-export function saveReponse(reponses: boolean[]) {
+export function saveReponse(reponses: boolean) {
   saveLocalStorage("reponse", JSON.stringify(reponses));
 }
 
