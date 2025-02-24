@@ -31,6 +31,10 @@ const updateField = (
 const submit = () => {
   submitForm(formData);
 };
+
+let routesJeux = ["questionnaire", "bubble", "pendu"];
+
+let randomRoute = routesJeux[Math.floor(Math.random() * routesJeux.length)];
 </script>
 
 <template>
@@ -61,7 +65,7 @@ const submit = () => {
       type="password"
       @typing="updateField('confirmmdp', $event)"
     />
-    <RouterLink to="/questionnaire" @click="submit">
+    <RouterLink :to="'/' + randomRoute" @click="submit">
       <ComponentButton title="Valider" type="submit" id="valider" />
     </RouterLink>
   </form>

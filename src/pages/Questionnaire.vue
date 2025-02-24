@@ -69,7 +69,6 @@ const questions = [
 const saveSubmitReponse = (reponses: boolean[]) => {
   let reponse = true;
   reponses.forEach((element) => {
-    console.log(element);
     if (element == false) {
       reponse = false;
     }
