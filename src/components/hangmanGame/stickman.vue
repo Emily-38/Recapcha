@@ -29,7 +29,7 @@ line,
 circle {
     stroke: black;
     stroke-width: 2px;
-    fill:black;
+    fill:white;
 }
 
 </style>

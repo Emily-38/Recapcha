@@ -232,12 +232,14 @@ function handleReponse() {
 <style scoped>
 .fond {
   display: flex;
+  flex-direction: column;
   padding: 25px;
+  margin-left: 25vw;
+  margin-right: 25vw;
   flex-direction: column;
   gap: 20px;
   border-radius: 12px;
   align-items: center;
-  width: 700px;
   background-color: #4da1a938;
 }
 
@@ -245,5 +247,10 @@ canvas {
   display: block;
   max-width: 50%;
   background: #fff;
+}
+
+.finish {
+  display: flex;
+  flex-direction: column;
 }
 </style>

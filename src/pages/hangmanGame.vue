@@ -83,8 +83,6 @@ const endGame = (path: string) => {
     ></GuessableWord>
     <WrongLetters :key="keyIndex" :wrong-guesses="wrongGuesses"></WrongLetters>
     <div>Vies restantes : {{ 4 - wrongGuesses.length }}</div>
-  </section>
-
     <form @submit.prevent="sendAnswer">
         <ComponentInput 
         placeholder="J, Banane..." 
@@ -92,6 +90,8 @@ const endGame = (path: string) => {
         @input="answerData = $event.target.value" />
         <ComponentButton title="Valider" type="submit" id="valider" />
     </form>
+  </section>
+
 
 </template>
 
@@ -103,4 +103,18 @@ form {
   justify-content: center;
   align-content: center;
 }
+
+section {
+  margin-left: 25vw;
+  margin-right: 25vw;
+  padding: 5vh 0;
+  background-color: #4da1a938;
+  border-radius: 12px;
+  align-items: center;
+}
+
+section div {
+    margin-bottom: 2vh;
+}
+
 </style>
