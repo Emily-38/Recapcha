@@ -1,22 +1,29 @@
-import { getLocalStorage, saveLocalStorage } from "../Service/localStorage";
+import {  StorageProvider } from "../Service/localStorage";
 import type { Formulaire } from "../Types/Formulaire";
 
-export function saveUser(formData: Formulaire) {
-  saveLocalStorage("user", JSON.stringify(formData));
-}
-
-export function getUser() {
-  let user = getLocalStorage("user");
-
-  if (user) {
-    return JSON.parse(user);
+class LocalStorageProvider extends StorageProvider {
+ 
+  save(formData: Formulaire): void {
+    localStorage.setItem("user", JSON.stringify(formData));
   }
-}
+  user(): Formulaire | null {
+    let user = localStorage.getItem("user");
 
-export function updateUser() {
-  let user = getUser();
+    if (user) {
+      return JSON.parse(user);
+    }
 
-  user["isHuman"] = true;
+    return null;
+  }
+  updateUser(): void {
+    let user = this.user();
 
-  saveLocalStorage("user", JSON.stringify(user));
-}
+    if (user) {
+      user["isHuman"] = true;
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+  }
+  }
+
+
+export{LocalStorageProvider}

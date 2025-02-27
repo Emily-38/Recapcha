@@ -1,11 +1,11 @@
-import { getLocalStorage, saveLocalStorage } from "../Service/localStorage";
+
 
 export function saveReponse(reponses: boolean) {
-  saveLocalStorage("reponse", JSON.stringify(reponses));
+ localStorage.setItem("reponse", JSON.stringify(reponses));
 }
 
 export function getReponse() {
-  let reponses = getLocalStorage("reponse");
+  let reponses = localStorage.getItem("reponse");
 
   if (reponses) {
     return JSON.parse(reponses);
