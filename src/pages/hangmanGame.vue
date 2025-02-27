@@ -7,6 +7,7 @@ import Stickman from "../components/hangmanGame/stickman.vue";
 import ComponentInput from "../components/Input.vue";
 import ComponentButton from "../components/Button.vue";
 import { submitReponse } from "../controllers/JeuController";
+import { removeDupes } from '../components/hangmanGame/removeDupes';
 
 
 const words = ['CHAT', 'TABLE', 'SOLEIL', 'POMME', 'ROBOT', 'LILAS'];
@@ -48,12 +49,10 @@ const sendAnswer = () => {
 
   //redirection with route passed in arg, TOUPDATE once result page is provided with correct names
   if (wrongGuesses.length >= 4) {
-    endGame("loss");
     submitReponse(false);
   } else if (
     correctGuesses.length == [...new Set(chosenWord.split(""))].length
   ) {
-    endGame("win");
     submitReponse(true);
   }
 
@@ -63,14 +62,6 @@ const sendAnswer = () => {
   return false;
 };
 
-const removeDupes = (array: string[]) => {
-  return [...new Set(array)];
-};
-
-const endGame = (path: string) => {
-  //redirection à fournir
-  console.log("its a", path);
-};
 </script>
 
 <template>
